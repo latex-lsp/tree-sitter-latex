@@ -76,6 +76,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_paragraph"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_flat_content"
         }
       ]
@@ -235,7 +239,16 @@
               "type": "SYMBOL",
               "name": "subsubsection"
             }
-          },
+          }
+        ]
+      }
+    },
+    "_paragraph": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
           {
             "type": "REPEAT1",
             "content": {
@@ -357,6 +370,22 @@
             "members": [
               {
                 "type": "PREC_RIGHT",
+                "value": -1,
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_paragraph"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PREC_RIGHT",
                 "value": 0,
                 "content": {
                   "type": "CHOICE",
@@ -387,27 +416,6 @@
                       "content": {
                         "type": "SYMBOL",
                         "name": "subsubsection"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "paragraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "subparagraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "enum_item"
                       }
                     }
                   ]
@@ -489,6 +497,22 @@
             "members": [
               {
                 "type": "PREC_RIGHT",
+                "value": -1,
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_paragraph"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PREC_RIGHT",
                 "value": 0,
                 "content": {
                   "type": "CHOICE",
@@ -512,27 +536,6 @@
                       "content": {
                         "type": "SYMBOL",
                         "name": "subsubsection"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "paragraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "subparagraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "enum_item"
                       }
                     }
                   ]
@@ -614,6 +617,22 @@
             "members": [
               {
                 "type": "PREC_RIGHT",
+                "value": -1,
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_paragraph"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PREC_RIGHT",
                 "value": 0,
                 "content": {
                   "type": "CHOICE",
@@ -630,27 +649,6 @@
                       "content": {
                         "type": "SYMBOL",
                         "name": "subsubsection"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "paragraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "subparagraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "enum_item"
                       }
                     }
                   ]
@@ -724,39 +722,29 @@
             "members": [
               {
                 "type": "PREC_RIGHT",
+                "value": -1,
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "_paragraph"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PREC_RIGHT",
                 "value": 0,
                 "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "subsubsection"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "paragraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "subparagraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "enum_item"
-                      }
-                    }
-                  ]
+                  "type": "REPEAT1",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "subsubsection"
+                  }
                 }
               },
               {
@@ -827,32 +815,10 @@
             "members": [
               {
                 "type": "PREC_RIGHT",
-                "value": 0,
+                "value": -1,
                 "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "paragraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "subparagraph"
-                      }
-                    },
-                    {
-                      "type": "REPEAT1",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "enum_item"
-                      }
-                    }
-                  ]
+                  "type": "SYMBOL",
+                  "name": "_paragraph"
                 }
               },
               {
