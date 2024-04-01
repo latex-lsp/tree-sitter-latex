@@ -523,3 +523,5 @@ build/
 
 src/
 !src/scanner.c
+!src/grammar.json
+!src/node-types.json
