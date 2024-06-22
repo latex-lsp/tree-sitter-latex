@@ -575,6 +575,7 @@ module.exports = grammar({
         $.color_set_definition,
         $.color_reference,
         $.tikz_library_import,
+        $.hyperlink,
         $.generic_command,
       ),
 
@@ -1111,6 +1112,15 @@ module.exports = grammar({
       seq(
         field('command', choice('\\text', '\\intertext', '\\shortintertext')),
         field('content', $.curly_group),
+      ),
+
+    hyperlink: $ =>
+      prec.right(
+        seq(
+          field('command', choice('\\url', '\\href')),
+          field('url', $.curly_group_text),
+          field('label', optional($.curly_group)),
+        ),
       ),
   },
 });
