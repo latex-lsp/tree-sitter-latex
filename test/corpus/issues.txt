@@ -42,6 +42,9 @@ foo foo foo foo foo foo
         (command_name)
         (curly_group
           (text
+            (number)
+            (word)
+            (number)
             (word))))
       (word)
       (word)
@@ -59,7 +62,9 @@ foo foo foo foo foo foo
         (command_name)
         (curly_group
           (text
-            (word))))
+            (number)
+            (word)
+            (number))))
       (word)
       (word)
       (word)
@@ -153,6 +158,7 @@ tree-sitter-latex (Issue #10)
         (command_name)))
     (curly_group
       (text
+        (number)
         (word)))
     (curly_group
       (generic_command
@@ -163,15 +169,16 @@ tree-sitter-latex (Issue #10)
       (paragraph))
     (curly_group
       (text
+        (number)
         (word)))
     (curly_group
       (text
-        (word)
+        (number)
         (generic_command
           (command_name))))
     (curly_group
       (text
-        (word)
+        (number)
         (generic_command
           (command_name))))))
 
@@ -264,6 +271,7 @@ tree-sitter-latex (Issue #10)
         (command_name)))
     (curly_group
       (text
+        (number)
         (word)))
     (curly_group
       (generic_command
@@ -274,15 +282,16 @@ tree-sitter-latex (Issue #10)
       (paragraph))
     (curly_group
       (text
+        (number)
         (word)))
     (curly_group
       (text
-        (word)
+        (number)
         (generic_command
           (command_name))))
     (curly_group
       (text
-        (word)
+        (number)
         (generic_command
           (command_name))))))
 
@@ -302,7 +311,7 @@ tree-sitter-latex (Issue #13)
           (word))
         (value
           (text
-            (word)
+            (number)
             (generic_command
               (command_name))))))
     (curly_group_path
@@ -352,7 +361,7 @@ tree-sitter-latex (Issue #25 Nesting of document structure)
       (text
         word: (word)))
     (text
-      word: (word))
+      word: (number))
     (generic_environment
       begin: (begin
         name: (curly_group_text
@@ -360,19 +369,19 @@ tree-sitter-latex (Issue #25 Nesting of document structure)
             word: (word))))
       (enum_item
         (text
-          word: (word)
+          word: (number)
           word: (generic_command
             command: (command_name)
             arg: (curly_group
               (text
-                word: (word))))
-          word: (word)))
+                word: (number))))
+          word: (number)))
       end: (end
         name: (curly_group_text
           text: (text
             word: (word)))))
     (text
-      word: (word))))
+      word: (number))))
 
 ================================================================================
 tree-sitter-latex (Issue #28 \usetikzlibrary with multiple libs)
@@ -573,26 +582,26 @@ Qux 2
     (brack_group
       (text
         (word)
-        (word)))
+        (number)))
     (curly_group
       (text
         (word)
-        (word)))
+        (number)))
     (text
       (word)
-      (word))
+      (number))
     (subsection
       (brack_group
         (text
           (word)
-          (word)))
+          (number)))
       (curly_group
         (text
           (word)
-          (word)))
+          (number)))
       (text
         (word)
-        (word)))))
+        (number)))))
 
 ================================================================================
 tree-sitter-latex (Issue #42) | Command with parens
@@ -658,11 +667,11 @@ tree-sitter-latex (Issue #44) | \definecolor
         (word)))
     (curly_group
       (text
-        (word))
+        (number))
       (text
-        (word))
+        (number))
       (text
-        (word)))))
+        (number)))))
 
 ================================================================================
 tree-sitter-latex (Issue #48) | Brackets in math mode
@@ -675,7 +684,7 @@ tree-sitter-latex (Issue #48) | Brackets in math mode
 (source_file
   (inline_formula
     (text
-      (word))
+      (number))
     (text
       (operator)
       (generic_command
@@ -740,14 +749,14 @@ r \big|_0^a
 (source_file
   (math_delimiter
     (text
-      (word)
+      (number)
       (operator)
-      (word)))
+      (number)))
   (math_delimiter
     (text
-      (word)
+      (number)
       (operator)
-      (word)))
+      (number)))
   (math_delimiter
     (text
       (word)))
@@ -771,7 +780,7 @@ tree-sitter-latex (Issue #107) | subscript
 
 (source_file
   (text
-    (word)
+    (number)
     (superscript
       (letter))
-    (word)))
+    (number)))

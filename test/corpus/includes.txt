@@ -41,7 +41,7 @@ Package include with options
           (word))
         (value
           (text
-            (word)
+            (number)
             (generic_command
               (command_name)))))
       (key_value_pair
@@ -97,7 +97,7 @@ Class include with options
           (word))
         (value
           (text
-            (word)
+            (number)
             (generic_command
               (command_name)))))
       (key_value_pair
@@ -177,12 +177,12 @@ Graphics include with options
           (word))
         (value
           (text
-            (word))))
+            (number))))
       (key_value_pair
         (text
           (word))
         (value
           (text
-            (word)))))
+            (number)))))
     (curly_group_path
       (path))))

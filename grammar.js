@@ -366,6 +366,7 @@ module.exports = grammar({
             'word',
             choice(
               $.operator,
+              $.number,
               $.word,
               $.placeholder,
               $.block_comment,
@@ -377,7 +378,9 @@ module.exports = grammar({
         ),
       ),
 
-    word: $ => /[^\s\\%\{\},\$\[\]\(\)=\#_\^\-\+\/\*]+/,
+    word: $ => /[^\s\d\\%\{\},\$\[\]\(\)=\#_\^\-\+\/\*]+/,
+
+    number: $ => /(\d+(\.\d+)?)|(\.\d+)/,
 
     placeholder: $ => /#\d/,
 

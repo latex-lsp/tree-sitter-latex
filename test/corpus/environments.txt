@@ -297,17 +297,17 @@ Math environment
         (text
           (word))))
     (text
-     (word)
-     (superscript
-      (curly_group
-       (text
-        (word)
-        (generic_command
-         (command_name)))))
+      (word)
+      (superscript
+        (curly_group
+          (text
+            (word)
+            (generic_command
+              (command_name)))))
       (operator)
-      (word))
+      (number))
     (text
-      (word))
+      (number))
     (end
       (curly_group_text
         (text

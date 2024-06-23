@@ -25,19 +25,19 @@ Top level sections
         (text
           (word))))
     (text
-      (word))
+      (number))
     (section
       (curly_group
         (text
           (word)))
       (text
-        (word)))
+        (number)))
     (section
       (curly_group
         (text
           (word)))
       (text
-        (word)))
+        (number)))
     (end
       (curly_group_text
         (text
@@ -65,26 +65,26 @@ Nested sections
 
 (source_file
   (text
-    (word))
+    (number))
   (part
     (curly_group
       (generic_command
         (command_name)))
     (text
-      (word))
+      (number))
     (chapter
       (curly_group
         (text
           (word)))
       (text
-        (word)))
+        (number)))
     (chapter
       (curly_group
         (curly_group
           (text
             (word))))
       (text
-        (word)))))
+        (number)))))
 
 ================================================================================
 Subsection with preceeding paragraph
