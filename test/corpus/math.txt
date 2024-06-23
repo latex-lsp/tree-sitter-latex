@@ -198,11 +198,11 @@ Simple math set
   (generic_command
     (command_name))
   (text
-    (word))
+    (number))
   (text
-    (word))
+    (number))
   (text
-    (word)
+    (number)
     (generic_command
       (command_name))))
 
