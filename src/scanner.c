@@ -10,6 +10,7 @@ enum TokenType {
   TRIVIA_RAW_ENV_LISTING,
   TRIVIA_RAW_ENV_MINTED,
   TRIVIA_RAW_ENV_ASY,
+  TRIVIA_RAW_ENV_ASYDEF,
   TRIVIA_RAW_ENV_PYCODE,
   TRIVIA_RAW_ENV_LUACODE,
   TRIVIA_RAW_ENV_LUACODE_STAR,
@@ -124,6 +125,8 @@ bool tree_sitter_latex_external_scanner_scan(void *payload, TSLexer *lexer,
     return find_verbatim(lexer, "\\end{pycode}", false);
   case TRIVIA_RAW_ENV_ASY:
     return find_verbatim(lexer, "\\end{asy}", false);
+  case TRIVIA_RAW_ENV_ASYDEF:
+    return find_verbatim(lexer, "\\end{asydef}", false);
   case TRIVIA_RAW_ENV_LUACODE:
     return find_verbatim(lexer, "\\end{luacode}", false);
   case TRIVIA_RAW_ENV_LUACODE_STAR:

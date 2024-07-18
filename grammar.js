@@ -47,6 +47,7 @@ module.exports = grammar({
     $._trivia_raw_env_listing,
     $._trivia_raw_env_minted,
     $._trivia_raw_env_asy,
+    $._trivia_raw_env_asydef,
     $._trivia_raw_env_pycode,
     $._trivia_raw_env_luacode,
     $._trivia_raw_env_luacode_star,
@@ -85,6 +86,7 @@ module.exports = grammar({
         $.listing_environment,
         $.minted_environment,
         $.asy_environment,
+        $.asydef_environment,
         $.pycode_environment,
         $.luacode_environment,
         $.sagesilent_environment,
@@ -500,6 +502,14 @@ module.exports = grammar({
       rule: 'asy_environment',
       name: 'asy',
       content: $ => field('code', alias($._trivia_raw_env_asy, $.source_code)),
+      options: undefined,
+    }),
+
+    ...specialEnvironment({
+      rule: 'asydef_environment',
+      name: 'asydef',
+      content: $ =>
+        field('code', alias($._trivia_raw_env_asydef, $.source_code)),
       options: undefined,
     }),
 
