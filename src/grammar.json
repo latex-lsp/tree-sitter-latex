@@ -1139,6 +1139,35 @@
         }
       ]
     },
+    "curly_group_spec": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_text_content"
+              },
+              {
+                "type": "STRING",
+                "value": "="
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
     "curly_group_text_list": {
       "type": "SEQ",
       "members": [
@@ -5073,6 +5102,19 @@
       ]
     },
     "new_command_definition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_new_command_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newer_command_definition"
+        }
+      ]
+    },
+    "_new_command_definition": {
       "type": "SEQ",
       "members": [
         {
@@ -5099,6 +5141,14 @@
               },
               {
                 "type": "STRING",
+                "value": "\\providecommand"
+              },
+              {
+                "type": "STRING",
+                "value": "\\providecommand*"
+              },
+              {
+                "type": "STRING",
                 "value": "\\DeclareRobustCommand"
               },
               {
@@ -5112,38 +5162,6 @@
               {
                 "type": "STRING",
                 "value": "\\DeclareMathOperator*"
-              },
-              {
-                "type": "STRING",
-                "value": "\\NewDocumentCommand"
-              },
-              {
-                "type": "STRING",
-                "value": "\\RenewDocumentCommand"
-              },
-              {
-                "type": "STRING",
-                "value": "\\ProvideDocumentCommand"
-              },
-              {
-                "type": "STRING",
-                "value": "\\DeclareDocumentCommand"
-              },
-              {
-                "type": "STRING",
-                "value": "\\NewExpandableDocumentCommand"
-              },
-              {
-                "type": "STRING",
-                "value": "\\RenewExpandableDocumentCommand"
-              },
-              {
-                "type": "STRING",
-                "value": "\\ProvideExpandableDocumentCommand"
-              },
-              {
-                "type": "STRING",
-                "value": "\\DeclareExpandableDocumentCommand"
               }
             ]
           }
@@ -5152,8 +5170,17 @@
           "type": "FIELD",
           "name": "declaration",
           "content": {
-            "type": "SYMBOL",
-            "name": "curly_group_command_name"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "curly_group_command_name"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "command_name"
+              }
+            ]
           }
         },
         {
@@ -5202,6 +5229,89 @@
           }
         }
       ]
+    },
+    "_newer_command_definition": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "command",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "\\NewDocumentCommand"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\RenewDocumentCommand"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\ProvideDocumentCommand"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\DeclareDocumentCommand"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\NewExpandableDocumentCommand"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\RenewExpandableDocumentCommand"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\ProvideExpandableDocumentCommand"
+                },
+                {
+                  "type": "STRING",
+                  "value": "\\DeclareExpandableDocumentCommand"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "declaration",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "curly_group_command_name"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "command_name"
+                }
+              ]
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "spec",
+            "content": {
+              "type": "SYMBOL",
+              "name": "curly_group_spec"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "implementation",
+            "content": {
+              "type": "SYMBOL",
+              "name": "curly_group"
+            }
+          }
+        ]
+      }
     },
     "old_command_definition": {
       "type": "SEQ",
@@ -5489,6 +5599,19 @@
       }
     },
     "environment_definition": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_environment_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newer_environment_definition"
+        }
+      ]
+    },
+    "_environment_definition": {
       "type": "SEQ",
       "members": [
         {
@@ -5504,7 +5627,61 @@
               {
                 "type": "STRING",
                 "value": "\\renewenvironment"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "curly_group_text"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "argc",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "brack_group_argc"
               },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "begin",
+          "content": {
+            "type": "SYMBOL",
+            "name": "curly_group_impl"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "end",
+          "content": {
+            "type": "SYMBOL",
+            "name": "curly_group_impl"
+          }
+        }
+      ]
+    },
+    "_newer_environment_definition": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "command",
+          "content": {
+            "type": "CHOICE",
+            "members": [
               {
                 "type": "STRING",
                 "value": "\\NewDocumentEnvironment"
@@ -5534,18 +5711,10 @@
         },
         {
           "type": "FIELD",
-          "name": "argc",
+          "name": "spec",
           "content": {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "brack_group_argc"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+            "type": "SYMBOL",
+            "name": "curly_group_spec"
           }
         },
         {
