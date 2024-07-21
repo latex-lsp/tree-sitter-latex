@@ -42,7 +42,7 @@ Hello World!
       (curly_group_text
         (text
           (word)))
-      (brack_group
+      (brack_group_generic_arg
         (text
           (word)
           (word))))
@@ -72,7 +72,7 @@ Hello World!
       (curly_group_text
         (text
           (word)))
-      (brack_group
+      (brack_group_generic_arg
         (text
           (word))
         (brack_group
@@ -106,7 +106,7 @@ Hello World!
       (curly_group_text
         (text
           (word)))
-      (brack_group
+      (brack_group_generic_arg
         (curly_group)
         (curly_group)))
     (text
@@ -319,13 +319,13 @@ Math environment
         (text
           (word))))
     (text
-     (word)
-     (superscript
-      (curly_group
-       (text
-        (word)
-        (generic_command
-         (command_name)))))
+      (word)
+      (superscript
+        (curly_group
+          (text
+            (word)
+            (generic_command
+              (command_name)))))
       (operator)
       (word))
     (text
