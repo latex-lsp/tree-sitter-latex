@@ -697,17 +697,28 @@ module.exports = grammar({
         $.tikz_library_import,
         $.hyperlink,
         $.generic_command,
+        // $._command_with_unbalanced_bracket,
       ),
 
     generic_command: $ =>
       prec.right(
         seq(
-          field('command', $.command_name),
+          $._command_base,
+          choice(
           repeat(field('arg', choice($.brack_group_generic_arg, $.curly_group_generic_arg, $.curly_group))),
+            '['
+          )
         ),
       ),
 
-    command_name: $ => /\\([^\r\n]|[@a-zA-Z]+\*?)?/,
+    _command_with_unbalanced_bracket: $ =>
+      prec.right(
+        seq(alias($._command_base, $.generic_command), '['),
+      ),
+
+    _command_base: $ => seq(field('command', $.command_name)),
+
+    command_name: $ => /\\([^\r\n\(\)\[\]]|[@a-zA-Z]+\*?)/,
 
     title_declaration: $ =>
       seq(

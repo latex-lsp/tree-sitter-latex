@@ -4470,43 +4470,83 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "FIELD",
-            "name": "command",
-            "content": {
-              "type": "SYMBOL",
-              "name": "command_name"
-            }
+            "type": "SYMBOL",
+            "name": "_command_base"
           },
           {
-            "type": "REPEAT",
-            "content": {
-              "type": "FIELD",
-              "name": "arg",
-              "content": {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "brack_group_generic_arg"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "curly_group_generic_arg"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "curly_group"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "REPEAT",
+                "content": {
+                  "type": "FIELD",
+                  "name": "arg",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "brack_group_generic_arg"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "curly_group_generic_arg"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "curly_group"
+                      }
+                    ]
                   }
-                ]
+                }
+              },
+              {
+                "type": "STRING",
+                "value": "["
               }
-            }
+            ]
           }
         ]
       }
     },
+    "_command_with_unbalanced_bracket": {
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "ALIAS",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_command_base"
+            },
+            "named": true,
+            "value": "generic_command"
+          },
+          {
+            "type": "STRING",
+            "value": "["
+          }
+        ]
+      }
+    },
+    "_command_base": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "command",
+          "content": {
+            "type": "SYMBOL",
+            "name": "command_name"
+          }
+        }
+      ]
+    },
     "command_name": {
       "type": "PATTERN",
-      "value": "\\\\([^\\r\\n]|[@a-zA-Z]+\\*?)?"
+      "value": "\\\\([^\\r\\n\\(\\)\\[\\]]|[@a-zA-Z]+\\*?)"
     },
     "title_declaration": {
       "type": "SEQ",
