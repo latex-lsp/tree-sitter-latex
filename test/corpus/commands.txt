@@ -23,7 +23,7 @@ Command with one curly argument
 (source_file
   (generic_command
     (command_name)
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)))))
 
@@ -38,11 +38,12 @@ Command with one curly argument and brackets
 (source_file
   (generic_command
     (command_name)
-    (curly_group
+    (curly_group_generic_arg
       (text
-        (word))))
-  (text
-    (word)))
+        (word)))
+    (brack_group_generic_arg
+      (text
+        (word)))))
 
 ================================================================================
 Command with incomplete argument
@@ -66,6 +67,58 @@ Command with incomplete argument
             (word)))))))
 
 ================================================================================
+Command with mixed key-value arguments
+================================================================================
+
+\hypersetup{
+    unicode,
+    linktoc=all,
+    bookmarksnumbered,
+    pdflinkmargin=1.0pt,
+    citebordercolor=CiteColor,
+    % colorlinks=true,
+    pdfauthor=\ThesisAuthor,
+    pdftitle=\ThesisTitle,
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_command
+    (command_name)
+    (curly_group_generic_arg
+      (text
+        (word))
+      (key_value_pair
+        (text
+          (word))
+        (text
+          (word)))
+      (text
+        (word))
+      (key_value_pair
+        (text
+          (word))
+        (text
+          (word)))
+      (key_value_pair
+        (text
+          (word))
+        (text
+          (word)))
+      (line_comment)
+      (key_value_pair
+        (text
+          (word))
+        (generic_command
+          (command_name)))
+      (key_value_pair
+        (text
+          (word))
+        (generic_command
+          (command_name))))))
+
+================================================================================
 Acroynm definition
 ================================================================================
 
@@ -79,10 +132,9 @@ Acroynm definition
       (key_value_pair
         (text
           (word))
-        (value
-          (curly_group
-            (text
-              (word))))))
+        (curly_group
+          (text
+            (word)))))
     (curly_group_text
       (text
         (word)))
@@ -174,7 +226,7 @@ Command definition (xparse)
 Command definition with optional argument (xparse)
 ================================================================================
 
-\NewDocumentCommand{\foo}{o{default} m}{#1 #2}
+\NewDocumentCommand{\foo}{O{default} m}{#1 #2}
 
 --------------------------------------------------------------------------------
 
@@ -194,6 +246,105 @@ Command definition with optional argument (xparse)
       (text
         (placeholder)
         (placeholder)))))
+
+================================================================================
+Command definition of complex command (xparse)
+================================================================================
+
+\NewDocumentCommand{\cancel}{O{mygray}mo}{%
+    \tikz[baseline=(N.base)]{
+        \node[main node](N){\(#2\)};
+        \IfValueT{#3}{\node[label node, gray, anchor=south] at (N.north){#3};}
+        \draw[strike out, #1]  (N.south west) -- (N.north east);
+    }
+}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (new_command_definition
+    (curly_group_command_name
+      (command_name))
+    (curly_group_spec
+      (text
+        (word))
+      (curly_group
+        (text
+          (word)))
+      (text
+        (word)))
+    (curly_group
+      (line_comment)
+      (generic_command
+        (command_name)
+        (brack_group_generic_arg
+          (key_value_pair
+            (text
+              (word))
+            (text
+              (word))))
+        (curly_group_generic_arg
+          (generic_command
+            (command_name)
+            (brack_group_generic_arg
+              (text
+                (word)
+                (word))))
+          (text
+            (word))
+          (curly_group
+            (inline_formula
+              (text
+                (placeholder))))
+          (text
+            (word)
+            (generic_command
+              (command_name)
+              (curly_group_generic_arg
+                (text
+                  (placeholder)))
+              (curly_group_generic_arg
+                (generic_command
+                  (command_name)
+                  (brack_group_generic_arg
+                    (text
+                      (word)
+                      (word))
+                    (text
+                      (word))
+                    (key_value_pair
+                      (text
+                        (word))
+                      (text
+                        (word)))))
+                (text
+                  (word))
+                (text
+                  (word))
+                (curly_group
+                  (text
+                    (placeholder)))
+                (text
+                  (word))))
+            (generic_command
+              (command_name)
+              (brack_group_generic_arg
+                (text
+                  (word)
+                  (word))
+                (text
+                  (placeholder)))))
+          (text
+            (word)
+            (word))
+          (text
+            (operator)
+            (operator))
+          (text
+            (word)
+            (word))
+          (text
+            (word)))))))
 
 ================================================================================
 Author command

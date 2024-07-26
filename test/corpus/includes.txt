@@ -35,19 +35,17 @@ Package include with options
 
 (source_file
   (package_include
-    (brack_group_key_value
+    (brack_group_generic_arg
       (key_value_pair
         (text
           (word))
-        (value
-          (text
-            (word)
-            (generic_command
-              (command_name)))))
-      (key_value_pair
         (text
           (word)
-          (word))))
+          (generic_command
+            (command_name))))
+      (text
+        (word)
+        (word)))
     (curly_group_path_list
       (path))))
 
@@ -91,19 +89,17 @@ Class include with options
 
 (source_file
   (class_include
-    (brack_group_key_value
+    (brack_group_generic_arg
       (key_value_pair
         (text
           (word))
-        (value
-          (text
-            (word)
-            (generic_command
-              (command_name)))))
-      (key_value_pair
         (text
           (word)
-          (word))))
+          (generic_command
+            (command_name))))
+      (text
+        (word)
+        (word)))
     (curly_group_path
       (path))))
 
@@ -141,10 +137,9 @@ BibLaTeX glob include
 
 (source_file
   (biblatex_include
-    (brack_group_key_value
-      (key_value_pair
-        (text
-          (word))))
+    (brack_group_generic_arg
+      (text
+        (word)))
     (curly_group_glob_pattern
       (glob_pattern))))
 
@@ -171,18 +166,16 @@ Graphics include with options
 
 (source_file
   (graphics_include
-    (brack_group_key_value
+    (brack_group_generic_arg
       (key_value_pair
         (text
           (word))
-        (value
-          (text
-            (word))))
+        (text
+          (word)))
       (key_value_pair
         (text
           (word))
-        (value
-          (text
-            (word)))))
+        (text
+          (word))))
     (curly_group_path
       (path))))

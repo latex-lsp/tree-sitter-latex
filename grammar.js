@@ -78,22 +78,24 @@ module.exports = grammar({
     _flat_content: $ => prec.right(choice($._text_with_env_content, '[', ']')),
 
     _text_with_env_content: $ =>
-      choice(
-        ',',
-        '=',
-        $.comment_environment,
-        $.verbatim_environment,
-        $.listing_environment,
-        $.minted_environment,
-        $.asy_environment,
-        $.asydef_environment,
-        $.pycode_environment,
-        $.luacode_environment,
-        $.sagesilent_environment,
-        $.sageblock_environment,
-        $.generic_environment,
-        $.math_environment,
-        $._text_content,
+      prec(-1,
+        choice(
+          ',',
+          '=',
+          $.comment_environment,
+          $.verbatim_environment,
+          $.listing_environment,
+          $.minted_environment,
+          $.asy_environment,
+          $.asydef_environment,
+          $.pycode_environment,
+          $.luacode_environment,
+          $.sagesilent_environment,
+          $.sageblock_environment,
+          $.generic_environment,
+          $.math_environment,
+          $._text_content,
+        ),
       ),
 
     _text_content: $ =>
@@ -317,6 +319,19 @@ module.exports = grammar({
 
     curly_group: $ => seq('{', repeat($._root_content), '}'),
 
+    curly_group_generic_arg: $ =>
+      prec(
+        2,
+        seq(
+          '{',
+          sepBy(
+            choice(field('pair', $.key_value_pair), repeat(choice($._text_content, $.brack_group))),
+            ','
+          ),
+          '}'
+        ),
+      ),
+
     curly_group_text: $ => seq('{', field('text', $.text), '}'),
 
     curly_group_spec: $ =>
@@ -356,6 +371,16 @@ module.exports = grammar({
 
     brack_group: $ =>
       seq('[', repeat(choice($._text_with_env_content, $.brack_group)), ']'),
+
+    brack_group_generic_arg: $ =>
+      seq(
+        '[',
+        sepBy(
+          choice(field('pair', $.key_value_pair), repeat(choice($._text_content, $.brack_group))),
+          ','
+        ),
+        ']'
+      ),
 
     brack_group_text: $ => seq('[', field('text', $.text), ']'),
 
@@ -424,9 +449,14 @@ module.exports = grammar({
     //--- Key / Value
 
     key_value_pair: $ =>
-      seq(field('key', $.text), optional(seq('=', field('value', $.value)))),
-
-    value: $ => repeat1(choice($._text_content, $.brack_group)),
+      prec(
+        2,
+        seq(
+          field('key', $.text),
+          '=',
+          field('value', repeat1(choice($._text_content, $.brack_group)))
+        ),
+      ),
 
     //--- Math
 
@@ -481,7 +511,7 @@ module.exports = grammar({
         seq(
           field('command', '\\begin'),
           field('name', $.curly_group_text),
-          field('options', optional($.brack_group)),
+          field('options', optional($.brack_group_generic_arg)),
         ),
       ),
 
@@ -530,7 +560,7 @@ module.exports = grammar({
         field('code', alias($._trivia_raw_env_minted, $.source_code)),
       options: $ =>
         seq(
-          field('options', optional($.brack_group_key_value)),
+          field('options', optional($.brack_group_generic_arg)),
           field('language', $.curly_group_text),
         ),
     }),
@@ -667,43 +697,54 @@ module.exports = grammar({
         $.tikz_library_import,
         $.hyperlink,
         $.generic_command,
+        // $._command_with_unbalanced_bracket,
       ),
 
     generic_command: $ =>
       prec.right(
         seq(
-          field('command', $.command_name),
-          repeat(field('arg', $.curly_group)),
+          $._command_base,
+          choice(
+          repeat(field('arg', choice($.brack_group_generic_arg, $.curly_group_generic_arg, $.curly_group))),
+            '['
+          )
         ),
       ),
 
-    command_name: $ => /\\([^\r\n]|[@a-zA-Z]+\*?)?/,
+    _command_with_unbalanced_bracket: $ =>
+      prec.right(
+        seq(alias($._command_base, $.generic_command), '['),
+      ),
+
+    _command_base: $ => seq(field('command', $.command_name)),
+
+    command_name: $ => /\\([^\r\n\(\)\[\]]|[@a-zA-Z]+\*?)/,
 
     title_declaration: $ =>
       seq(
         field('command', '\\title'),
-        field('options', optional($.brack_group)),
+        field('options', optional($.brack_group_generic_arg)),
         field('text', $.curly_group),
       ),
 
     author_declaration: $ =>
       seq(
         field('command', '\\author'),
-        field('options', optional($.brack_group)),
+        field('options', optional($.brack_group_generic_arg)),
         field('authors', $.curly_group_author_list),
       ),
 
     package_include: $ =>
       seq(
         field('command', choice('\\usepackage', '\\RequirePackage')),
-        field('options', optional($.brack_group_key_value)),
+        field('options', optional($.brack_group_generic_arg)),
         field('paths', $.curly_group_path_list),
       ),
 
     class_include: $ =>
       seq(
         field('command', '\\documentclass'),
-        field('options', optional($.brack_group_key_value)),
+        field('options', optional($.brack_group_generic_arg)),
         field('path', $.curly_group_path),
       ),
 
@@ -719,7 +760,7 @@ module.exports = grammar({
     biblatex_include: $ =>
       seq(
         '\\addbibresource',
-        field('options', optional($.brack_group_key_value)),
+        field('options', optional($.brack_group_generic_arg)),
         field('glob', $.curly_group_glob_pattern),
       ),
 
@@ -738,21 +779,21 @@ module.exports = grammar({
     graphics_include: $ =>
       seq(
         field('command', '\\includegraphics'),
-        field('options', optional($.brack_group_key_value)),
+        field('options', optional($.brack_group_generic_arg)),
         field('path', $.curly_group_path),
       ),
 
     svg_include: $ =>
       seq(
         field('command', '\\includesvg'),
-        field('options', optional($.brack_group_key_value)),
+        field('options', optional($.brack_group_generic_arg)),
         field('path', $.curly_group_path),
       ),
 
     inkscape_include: $ =>
       seq(
         field('command', '\\includeinkscape'),
-        field('options', optional($.brack_group_key_value)),
+        field('options', optional($.brack_group_generic_arg)),
         field('path', $.curly_group_path),
       ),
 

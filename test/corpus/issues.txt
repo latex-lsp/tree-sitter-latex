@@ -27,7 +27,7 @@ foo foo foo foo foo foo
           (word))))
     (generic_command
       (command_name)
-      (curly_group
+      (curly_group_generic_arg
         (text
           (word)
           (operator))
@@ -40,7 +40,7 @@ foo foo foo foo foo foo
       (word)
       (generic_command
         (command_name)
-        (curly_group
+        (curly_group_generic_arg
           (text
             (word))))
       (word)
@@ -57,7 +57,7 @@ foo foo foo foo foo foo
       (word)
       (generic_command
         (command_name)
-        (curly_group
+        (curly_group_generic_arg
           (text
             (word))))
       (word)
@@ -145,31 +145,31 @@ tree-sitter-latex (Issue #10)
     (command_name)
     (curly_group
       (section))
-    (curly_group
+    (curly_group_generic_arg
       (generic_command
         (command_name)))
-    (curly_group
+    (curly_group_generic_arg
       (generic_command
         (command_name)))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)))
-    (curly_group
+    (curly_group_generic_arg
       (generic_command
         (command_name))))
   (generic_command
     (command_name)
     (curly_group
       (paragraph))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)
         (generic_command
           (command_name))))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)
         (generic_command
@@ -197,7 +197,7 @@ rm -rf "$(biber --cache)"
     (word)
     (generic_command
       (command_name)
-      (curly_group
+      (curly_group_generic_arg
         (text
           (word))))
     (word))
@@ -232,13 +232,13 @@ tree-sitter-latex (Issue #11)
     (curly_group_impl
       (generic_command
         (command_name)
-        (curly_group
+        (curly_group_generic_arg
           (text
             (word)))))
     (curly_group_impl
       (generic_command
         (command_name)
-        (curly_group
+        (curly_group_generic_arg
           (text
             (word)))))))
 
@@ -256,31 +256,31 @@ tree-sitter-latex (Issue #10)
     (command_name)
     (curly_group
       (section))
-    (curly_group
+    (curly_group_generic_arg
       (generic_command
         (command_name)))
-    (curly_group
+    (curly_group_generic_arg
       (generic_command
         (command_name)))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)))
-    (curly_group
+    (curly_group_generic_arg
       (generic_command
         (command_name))))
   (generic_command
     (command_name)
     (curly_group
       (paragraph))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)
         (generic_command
           (command_name))))
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word)
         (generic_command
@@ -296,15 +296,14 @@ tree-sitter-latex (Issue #13)
 
 (source_file
   (graphics_include
-    (brack_group_key_value
+    (brack_group_generic_arg
       (key_value_pair
         (text
           (word))
-        (value
-          (text
-            (word)
-            (generic_command
-              (command_name))))))
+        (text
+          (word)
+          (generic_command
+            (command_name)))))
     (curly_group_path
       (path))))
 
@@ -363,7 +362,7 @@ tree-sitter-latex (Issue #25 Nesting of document structure)
           word: (word)
           word: (generic_command
             command: (command_name)
-            arg: (curly_group
+            arg: (curly_group_generic_arg
               (text
                 word: (word))))
           word: (word)))
@@ -436,7 +435,7 @@ Let $C = \{ f \colon M \to \mathbb{R} \mid \text{$f$ is smooth} \}$.
         (command_name))
       (generic_command
         (command_name)
-        (curly_group
+        (curly_group_generic_arg
           (text
             (word))))
       (generic_command
@@ -605,7 +604,7 @@ tree-sitter-latex (Issue #42) | Command with parens
 (source_file
   (generic_command
     (command_name)
-    (curly_group
+    (curly_group_generic_arg
       (text
         (word))))
   (text
@@ -709,10 +708,9 @@ tree-sitter-latex (Issue #55) | minted with options
         (curly_group_text
           (text
             (word)))
-        (brack_group_key_value
-          (key_value_pair
-            (text
-              (word))))
+        (brack_group_generic_arg
+          (text
+            (word)))
         (curly_group_text
           (text
             (word))))
