@@ -521,5 +521,4 @@ build/
 /bindings/c/*.h
 /bindings/c/tree-sitter-*.pc
 
-src/parser.c
 src/tree_sitter/
