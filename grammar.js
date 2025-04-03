@@ -666,8 +666,18 @@ module.exports = grammar({
         $.tikz_library_import,
         $.hyperlink,
         $.changes_replaced,
+        $.todo,
         $.generic_command,
       ),
+
+    todo: $ =>
+      seq(
+        field('command', $.todo_command_name),
+        field('options', optional($.brack_group)),
+        field('arg', $.curly_group)
+      ),
+
+    todo_command_name: $ => /\\([a-zA-Z]?[a-zA-Z]?todo)/,
 
     generic_command: $ =>
       prec.right(

@@ -6897,6 +6897,48 @@
             "name": "curly_group"
           }
         }
+      ]
+    },
+    "todo": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "command",
+          "content": {
+            "type": "SYMBOL",
+            "name": "todo_command_name"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "options",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "brack_group"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "arg",
+          "content": {
+            "type": "SYMBOL",
+            "name": "curly_group"
+          }
+        }
+      ]
+    },
+    "todo_command_name": {
+      "type": "PATTERN",
+      "value": "\\\\([a-zA-Z]?[a-zA-Z]?todo)"
     }
   },
   "extras": [

@@ -827,6 +827,10 @@
           "named": true
         },
         {
+          "type": "todo",
+          "named": true
+        },
+        {
           "type": "import_include",
           "named": true
         },
