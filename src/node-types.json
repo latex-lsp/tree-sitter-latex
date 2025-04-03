@@ -823,6 +823,10 @@
           "named": true
         },
         {
+          "type": "changes_replaced",
+          "named": true
+        },
+        {
           "type": "import_include",
           "named": true
         },

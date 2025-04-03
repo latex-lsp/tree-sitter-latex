@@ -665,6 +665,7 @@ module.exports = grammar({
         $.color_reference,
         $.tikz_library_import,
         $.hyperlink,
+        $.changes_replaced,
         $.generic_command,
       ),
 
@@ -1272,6 +1273,13 @@ module.exports = grammar({
           field('uri', $.curly_group_uri),
           field('label', optional($.curly_group)),
         ),
+      ),
+
+    changes_replaced: $ =>
+      seq(
+        field('command', '\\replaced'),
+        field('text_added', $.curly_group),
+        field('text_deleted', $.curly_group)
       ),
   },
 });
