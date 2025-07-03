@@ -324,10 +324,10 @@ module.exports = grammar({
     curly_group_text_list: $ =>
       seq('{', sepBy(field('text', $.text), ','), '}'),
 
-		curly_group_label: $ => seq('{', field('label', $.label), '}'),
+    curly_group_label: $ => seq('{', field('label', $.label), '}'),
 
-		curly_group_label_list: $ =>
-			seq('{', sepBy(field('label', $.label), ','), '}'),
+    curly_group_label_list: $ =>
+      seq('{', sepBy(field('label', $.label), ','), '}'),
 
     curly_group_path: $ => seq('{', field('path', $.path), '}'),
 
@@ -335,8 +335,6 @@ module.exports = grammar({
       seq('{', sepBy(field('path', $.path), ','), '}'),
 
     curly_group_uri: $ => seq('{', field('uri', $.uri), '}'),
-
-    curly_group_uri_list: $ => seq('{', sepBy(field('uri', $.uri), ','), '}'),
 
     curly_group_command_name: $ =>
       seq('{', field('command', $.command_name), '}'),
