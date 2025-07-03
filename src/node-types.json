@@ -2716,6 +2716,22 @@
     }
   },
   {
+    "type": "curly_group_uri_list",
+    "named": true,
+    "fields": {
+      "uri": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "uri",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "displayed_equation",
     "named": true,
     "fields": {},
@@ -4417,7 +4433,7 @@
         "required": true,
         "types": [
           {
-            "type": "curly_group_text",
+            "type": "curly_group_uri",
             "named": true
           }
         ]
@@ -4579,7 +4595,7 @@
         "required": true,
         "types": [
           {
-            "type": "curly_group_text_list",
+            "type": "curly_group_uri_list",
             "named": true
           }
         ]
@@ -9942,7 +9958,8 @@
   },
   {
     "type": "line_comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "path",

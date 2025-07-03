@@ -331,6 +331,8 @@ module.exports = grammar({
 
     curly_group_uri: $ => seq('{', field('uri', $.uri), '}'),
 
+    curly_group_uri_list: $ => seq('{', sepBy(field('uri', $.uri), ','), '}'),
+
     curly_group_command_name: $ =>
       seq('{', field('command', $.command_name), '}'),
 
@@ -873,7 +875,7 @@ module.exports = grammar({
       ),
 
     label_definition: $ =>
-      seq(field('command', '\\label'), field('name', $.curly_group_text)),
+      seq(field('command', '\\label'), field('name', $.curly_group_uri)),
 
     label_reference: $ =>
       seq(
@@ -908,7 +910,7 @@ module.exports = grammar({
             '\\labelcpageref*',
           ),
         ),
-        field('names', $.curly_group_text_list),
+        field('names', $.curly_group_uri_list),
       ),
 
     label_reference_range: $ =>

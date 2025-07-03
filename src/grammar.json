@@ -1291,6 +1291,60 @@
         }
       ]
     },
+    "curly_group_uri_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "uri",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "uri"
+                  }
+                },
+                {
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "SEQ",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": ","
+                      },
+                      {
+                        "type": "FIELD",
+                        "name": "uri",
+                        "content": {
+                          "type": "SYMBOL",
+                          "name": "uri"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
     "curly_group_command_name": {
       "type": "SEQ",
       "members": [
@@ -5159,7 +5213,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "curly_group_text"
+            "name": "curly_group_uri"
           }
         }
       ]
@@ -5285,7 +5339,7 @@
           "name": "names",
           "content": {
             "type": "SYMBOL",
-            "name": "curly_group_text_list"
+            "name": "curly_group_uri_list"
           }
         }
       ]
@@ -7013,5 +7067,6 @@
     }
   ],
   "inline": [],
-  "supertypes": []
+  "supertypes": [],
+  "reserved": {}
 }
