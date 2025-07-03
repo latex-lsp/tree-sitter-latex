@@ -324,6 +324,11 @@ module.exports = grammar({
     curly_group_text_list: $ =>
       seq('{', sepBy(field('text', $.text), ','), '}'),
 
+		curly_group_label: $ => seq('{', field('label', $.label), '}'),
+
+		curly_group_label_list: $ =>
+			seq('{', sepBy(field('label', $.label), ','), '}'),
+
     curly_group_path: $ => seq('{', field('path', $.path), '}'),
 
     curly_group_path_list: $ =>
@@ -395,6 +400,8 @@ module.exports = grammar({
     path: $ => /[^\*\"\[\]:;,\|\{\}<>]+/,
 
     uri: $ => /[^\[\]\{\}]+/,
+
+    label: $ => /[^\\\[\]\{\}\$\(\)=&%\s_\^\#\~,]+/,
 
     argc: $ => /\d/,
 
@@ -875,7 +882,7 @@ module.exports = grammar({
       ),
 
     label_definition: $ =>
-      seq(field('command', '\\label'), field('name', $.curly_group_uri)),
+      seq(field('command', '\\label'), field('name', $.curly_group_label)),
 
     label_reference: $ =>
       seq(
@@ -910,7 +917,7 @@ module.exports = grammar({
             '\\labelcpageref*',
           ),
         ),
-        field('names', $.curly_group_uri_list),
+        field('names', $.curly_group_label_list),
       ),
 
     label_reference_range: $ =>
