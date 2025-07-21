@@ -4475,7 +4475,7 @@
         "required": true,
         "types": [
           {
-            "type": "curly_group_text",
+            "type": "curly_group_label",
             "named": true
           }
         ]
@@ -4657,7 +4657,7 @@
         "required": true,
         "types": [
           {
-            "type": "curly_group_text",
+            "type": "curly_group_label",
             "named": true
           }
         ]
@@ -4667,7 +4667,7 @@
         "required": true,
         "types": [
           {
-            "type": "curly_group_text",
+            "type": "curly_group_label",
             "named": true
           }
         ]

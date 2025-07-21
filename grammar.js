@@ -931,14 +931,14 @@ module.exports = grammar({
             '\\Cpagerefrange',
           ),
         ),
-        field('from', $.curly_group_text),
-        field('to', $.curly_group_text),
+        field('from', $.curly_group_label),
+        field('to', $.curly_group_label),
       ),
 
     label_number: $ =>
       seq(
         field('command', '\\newlabel'),
-        field('name', $.curly_group_text),
+        field('name', $.curly_group_label),
         field('number', $.curly_group),
       ),
 
