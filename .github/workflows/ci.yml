@@ -31,7 +31,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-14]
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v2
       - name: Run parser and binding tests
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 2
       - name: Check for scanner changes
@@ -82,12 +82,12 @@ jobs:
     if: github.ref != 'refs/heads/master'
     steps:
       - name: Checkout old version
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: master
           path: old
       - name: Checkout new version
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: new
       - name: Set up tree-sitter
