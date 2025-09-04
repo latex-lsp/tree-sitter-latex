@@ -5816,7 +5816,7 @@
           "name": "from",
           "content": {
             "type": "SYMBOL",
-            "name": "curly_group_text"
+            "name": "curly_group_label"
           }
         },
         {
@@ -5824,7 +5824,7 @@
           "name": "to",
           "content": {
             "type": "SYMBOL",
-            "name": "curly_group_text"
+            "name": "curly_group_label"
           }
         }
       ]
@@ -5845,7 +5845,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "curly_group_text"
+            "name": "curly_group_label"
           }
         },
         {
