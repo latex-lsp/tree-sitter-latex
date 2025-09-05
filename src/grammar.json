@@ -4547,7 +4547,7 @@
             "members": [
               {
                 "type": "FIELD",
-                "name": "counterwithin",
+                "name": "supercounter",
                 "content": {
                   "type": "SYMBOL",
                   "name": "brack_group_word"
@@ -4743,8 +4743,25 @@
                 "name": "curly_group_value"
               },
               {
-                "type": "SYMBOL",
-                "name": "counter_value"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "{"
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "value",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "counter_value"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": "}"
+                  }
+                ]
               }
             ]
           }

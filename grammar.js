@@ -717,7 +717,7 @@ module.exports = grammar({
         seq(
           field('command', '\\newcounter'),
           field('counter', $.curly_group_word),
-          optional(field('counterwithin', $.brack_group_word))
+          optional(field('supercounter', $.brack_group_word))
         )
       ),
 
