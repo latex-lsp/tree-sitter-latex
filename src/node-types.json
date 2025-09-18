@@ -2064,7 +2064,7 @@
         ]
       },
       "value": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
@@ -2074,6 +2074,14 @@
           {
             "type": "curly_group_value",
             "named": true
+          },
+          {
+            "type": "{",
+            "named": false
+          },
+          {
+            "type": "}",
+            "named": false
           }
         ]
       }
@@ -2103,7 +2111,7 @@
           }
         ]
       },
-      "counterwithin": {
+      "supercounter": {
         "multiple": false,
         "required": false,
         "types": [
