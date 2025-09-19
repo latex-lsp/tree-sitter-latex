@@ -11076,8 +11076,7 @@
   },
   {
     "type": "line_comment",
-    "named": true,
-    "extra": true
+    "named": true
   },
   {
     "type": "path",
