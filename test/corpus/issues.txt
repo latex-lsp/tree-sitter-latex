@@ -166,14 +166,12 @@ tree-sitter-latex (Issue #10)
         (word)))
     (curly_group
       (text
-        (word)
-        (generic_command
-          (command_name))))
+        (word))
+      (primitive))
     (curly_group
       (text
-        (word)
-        (generic_command
-          (command_name))))))
+        (word))
+      (primitive))))
 
 ================================================================================
 tree-sitter-latex (Issue #7)
@@ -241,50 +239,6 @@ tree-sitter-latex (Issue #11)
         (curly_group
           (text
             (word)))))))
-
-================================================================================
-tree-sitter-latex (Issue #10)
-================================================================================
-
-\titleformat{\section}{\relax}{\thesection}{1em}{\spacedsmallcaps}
-\titlespacing*{\paragraph}{0pt}{1\baselineskip}{0.5\baselineskip}
-
---------------------------------------------------------------------------------
-
-(source_file
-  (generic_command
-    (command_name)
-    (curly_group
-      (section))
-    (curly_group
-      (generic_command
-        (command_name)))
-    (curly_group
-      (generic_command
-        (command_name)))
-    (curly_group
-      (text
-        (word)))
-    (curly_group
-      (generic_command
-        (command_name))))
-  (generic_command
-    (command_name)
-    (curly_group
-      (paragraph))
-    (curly_group
-      (text
-        (word)))
-    (curly_group
-      (text
-        (word)
-        (generic_command
-          (command_name))))
-    (curly_group
-      (text
-        (word)
-        (generic_command
-          (command_name))))))
 
 ================================================================================
 tree-sitter-latex (Issue #13)

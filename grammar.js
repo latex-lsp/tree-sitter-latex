@@ -93,6 +93,7 @@ module.exports = grammar({
         $.sageblock_environment,
         $.generic_environment,
         $.math_environment,
+        $.primitive,
         $._text_content,
       ),
 
@@ -109,6 +110,49 @@ module.exports = grammar({
           ')',
         ),
       ),
+
+    primitive: $ =>
+      prec.right(
+      seq(
+        field('command', choice(
+            '\\topskip',
+            '\\leftskip',
+            '\\rightskip',
+            '\\parskip',
+            '\\parindent',
+            '\\parfillskip',
+            '\\baselineskip',
+            '\\lineskip',
+            '\\lineskiplimit',
+            '\\textheight',
+            '\\textwidth',
+            '\\paperheight',
+            '\\paperwidth',
+            '\\topmargin',
+            '\\oddsidemargin',
+            '\\headheight',
+            '\\headsep',
+            '\\marginparpush',
+            '\\marginparwidth',
+            '\\marginparsep',
+            '\\footskip',
+            '\\hoffset',
+            '\\voffset',
+        )),
+        optional(seq(optional(choice(' ', '=')), $.glue_spec)),
+      )),
+
+    glue_spec: $ =>
+      seq(
+        field('fixed', $.glue_value),
+        field('plus', optional($.plus_glue_value)),
+        field('minus', optional($.minus_glue_value)),
+      ),
+
+    // 1, 1.2, 1., .1
+    glue_value: $ => /[+-]?(\d+(\.\d*)?|\.\d+) *(bp|cm|dd|ex|em|fil|fill|in|mm|mu|pc|pt|sp)/,
+    plus_glue_value: $ => /plus *[+-]?(\d+(\.\d*)?|\.\d+) *(bp|cm|dd|ex|em|fil|fill|in|mm|mu|pc|pt|sp)/,
+    minus_glue_value: $ => /minus *[+-]?(\d+(\.\d*)?|\.\d+) *(bp|cm|dd|ex|em|fil|fill|in|mm|mu|pc|pt|sp)/,
 
     //--- Sections
 
