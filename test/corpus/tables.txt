@@ -1,0 +1,49 @@
+================================================================================
+Table midrule (\cmidrule)
+================================================================================
+
+\begin{tabular}{cc}
+\toprule[.9pt]
+Foo & Bar \\
+\cmidrule(rl){1-2}
+X & Y \\
+\end{tabular}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_environment
+    (begin
+      (curly_group_text
+        (text
+          (word))))
+    (curly_group
+      (text
+        (word)))
+    (generic_command
+      (command_name))
+    (text
+      (word))
+    (text
+      (word)
+      (delimiter)
+      (word)
+      (generic_command
+        (command_name))
+      (cmidrule
+        (paren_group
+          (word))
+        (curly_group
+          (text
+            (word)
+            (operator)
+            (word))))
+      (word)
+      (delimiter)
+      (word)
+      (generic_command
+        (command_name)))
+    (end
+      (curly_group_text
+        (text
+          (word))))))

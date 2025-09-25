@@ -418,6 +418,9 @@ module.exports = grammar({
     brack_group_key_value: $ =>
       seq('[', sepBy(field('pair', $.key_value_pair), ','), ']'),
 
+    paren_group: $ =>
+      seq('(', repeat(choice($.word, $.curly_group_text)), ')'),
+
     //--- Text
 
     text: $ =>
@@ -735,6 +738,7 @@ module.exports = grammar({
         $.hyperlink,
         $.changes_replaced,
         $.todo,
+        $.cmidrule,
         $.verb,
         $.generic_command,
       ),
@@ -1439,6 +1443,14 @@ module.exports = grammar({
         field('command', '\\replaced'),
         field('text_added', $.curly_group),
         field('text_deleted', $.curly_group)
+      ),
+
+    cmidrule: $ =>
+      seq(
+        field('command', '\\cmidrule'),
+        optional(field('options', $.brack_group)),
+        optional(field('trim', $.paren_group)),
+        field('args', $.curly_group),
       ),
 
     verb: $ =>
