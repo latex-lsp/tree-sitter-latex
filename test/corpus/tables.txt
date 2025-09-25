@@ -16,10 +16,10 @@ X & Y \\
     (begin
       (curly_group_text
         (text
-          (word))))
-    (curly_group
-      (text
-        (word)))
+          (word)))
+        (curly_group
+          (text
+            (word))))
     (generic_command
       (command_name))
     (text

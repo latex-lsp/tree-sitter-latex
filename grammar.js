@@ -542,7 +542,12 @@ module.exports = grammar({
         seq(
           field('command', '\\begin'),
           field('name', $.curly_group_text),
-          field('options', optional($.brack_group)),
+          repeat(
+            choice(
+              field('options', $.brack_group),
+              field('arg', $.curly_group),
+            ),
+          ),
         ),
       ),
 

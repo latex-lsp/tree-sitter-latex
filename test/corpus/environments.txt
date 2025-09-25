@@ -334,3 +334,96 @@ Math environment
       (curly_group_text
         (text
           (word))))))
+
+================================================================================
+CJK environment
+================================================================================
+
+\begin{CJK}{UTF8}{gbsn}
+Foo
+\end{CJK}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_environment
+    (begin
+      (curly_group_text
+        (text
+          (word)))
+      (curly_group
+        (text
+          (word)))
+      (curly_group
+        (text
+          (word))))
+    (text
+      (word))
+    (end
+      (curly_group_text
+        (text
+          (word))))))
+
+================================================================================
+Minipage environment
+================================================================================
+
+\begin{minipage}[x][y][z]{1cm}
+Foo
+\end{minipage}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_environment
+    (begin
+      (curly_group_text
+        (text
+          (word)))
+      (brack_group
+        (text
+          (word)))
+      (brack_group
+        (text
+          (word)))
+      (brack_group
+        (text
+          (word)))
+      (curly_group
+        (text
+          (word))))
+    (text
+      (word))
+    (end
+      (curly_group_text
+        (text
+          (word))))))
+
+================================================================================
+Proof environment
+================================================================================
+
+\begin{proof}{Proof of Theorem 1}
+Foo
+\end{proof}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (generic_environment
+    (begin
+      (curly_group_text
+        (text
+          (word)))
+      (curly_group
+        (text
+          (word)
+          (word)
+          (word)
+          (word))))
+    (text
+      (word))
+    (end
+      (curly_group_text
+        (text
+          (word))))))
