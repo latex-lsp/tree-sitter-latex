@@ -82,7 +82,9 @@ Foo # Bar
 
 (source_file
   (text
-    (word)
-    (ERROR
-      (UNEXPECTED ' '))
-    (word)))
+    (word))
+  (ERROR
+    (UNEXPECTED ' ')
+    (letter)
+    (letter)
+    (letter)))

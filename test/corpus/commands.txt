@@ -423,3 +423,56 @@ Reference ranges
   	(curly_group_label
 	  (label))))
 
+================================================================================
+Verbatim text \verb and \verb*
+================================================================================
+
+\verb|<structured_text>| or \verb*|<plain_text>|
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (verb)
+  (text
+    (word)
+    (verb)))
+
+================================================================================
+New theorem definition
+================================================================================
+
+\newtheorem{mytheorem}[section]{Theorem}
+\newtheorem{mycorollary}{Corollary}[mytheorem]
+\newtheorem*{myproposition*}{Proposition}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (theorem_definition
+    (curly_group_text_list
+      (text
+        (word)))
+    (brack_group_text
+      (text
+        (word)))
+    (curly_group
+      (text
+        (word))))
+  (theorem_definition
+    (curly_group_text_list
+      (text
+        (word)))
+    (curly_group
+      (text
+        (word)))
+    (brack_group_text
+      (text
+        (word))))
+  (theorem_definition
+    (curly_group_text_list
+      (text
+        (word)
+        (operator)))
+    (curly_group
+      (text
+        (word)))))

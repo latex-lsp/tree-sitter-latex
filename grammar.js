@@ -734,6 +734,7 @@ module.exports = grammar({
         $.hyperlink,
         $.changes_replaced,
         $.todo,
+        $.verb,
         $.generic_command,
       ),
 
@@ -1430,5 +1431,14 @@ module.exports = grammar({
         field('text_added', $.curly_group),
         field('text_deleted', $.curly_group)
       ),
+
+    verb: $ =>
+      seq(
+        field('command', choice('\\verb', '\\verb*')),
+        token.immediate('|'),
+        field('text', token.immediate(/[^|]*/)),
+        token.immediate('|'),
+      ),
+
   },
 });
