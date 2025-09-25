@@ -424,6 +424,193 @@ Reference ranges
 	  (label))))
 
 ================================================================================
+TikZ style: simple
+================================================================================
+
+\tikzstyle{simple} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (tikzstyle_definition
+    (curly_group_text
+      (text
+        (word)))
+    (brack_group
+      (text
+        (word))
+      (text
+        (word)
+        (word))
+      (text
+        (word))
+      (text
+        (word)
+        (word))
+      (text
+        (word))
+      (text
+        (word)
+        (word))
+      (text
+        (word))
+      (text
+        (word))
+      (text
+        (word))
+      (text
+        (word)))))
+
+================================================================================
+TikZ style: complex
+================================================================================
+
+\tikzstyle{complex} = [rectangle, path picture={\draw (0,0) -- (1,1); \fill[blue] (0.5,0.5) circle (0.1);}, fill=red!20]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (tikzstyle_definition
+    (curly_group_text
+      (text
+        (word)))
+    (brack_group
+      (text
+        (word))
+      (text
+        (word)
+        (word))
+      (curly_group
+        (generic_command
+          (command_name))
+        (text
+          (word))
+        (text
+          (word))
+        (text
+          (operator)
+          (operator))
+        (text
+          (word))
+        (text
+          (word))
+        (text
+          (word)
+          (generic_command
+            (command_name)))
+        (text
+          (word))
+        (text
+          (word))
+        (text
+          (word))
+        (text
+          (word))
+        (text
+          (word))
+        (text
+          (word)))
+      (text
+        (word))
+      (text
+        (word)))))
+
+================================================================================
+TikZ style: arrow
+================================================================================
+
+\tikzstyle{arrow} = [thick, ->]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (tikzstyle_definition
+    (curly_group_text
+      (text
+        (word)))
+    (brack_group
+      (text
+        (word))
+      (text
+        (operator)
+        (operator)))))
+
+================================================================================
+TikZ style: nested content
+================================================================================
+
+\tikzstyle{nested} = [rectangle, label={[fill=white, inner sep=1pt]above:{Text with {nested} content}}, fill=gray!30]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (tikzstyle_definition
+    (curly_group_text
+      (text
+        (word)))
+    (brack_group
+      (text
+        (word))
+      (text
+        (word))
+      (curly_group
+        (text
+          (word))
+        (text
+          (word))
+        (text
+          (word)
+          (word))
+        (text
+          (word))
+        (text
+          (word))
+        (curly_group
+          (text
+            (word)
+            (word))
+          (curly_group
+            (text
+              (word)))
+          (text
+            (word))))
+      (text
+        (word))
+      (text
+        (word)))))
+
+================================================================================
+TikZ style inline
+================================================================================
+
+Some text \tikzstyle{inline} = [minimum size=1cm] and \textbf{more text}.
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (text
+    (word)
+    (word)
+    (tikzstyle_definition
+      (curly_group_text
+        (text
+          (word)))
+      (brack_group
+        (text
+          (word)
+          (word))
+        (text
+          (word))))
+    (word)
+    (generic_command
+      (command_name)
+      (curly_group
+        (text
+          (word)
+          (word))))
+    (word)))
+
+================================================================================
 Verbatim text \verb and \verb*
 ================================================================================
 

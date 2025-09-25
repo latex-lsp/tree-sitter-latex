@@ -731,6 +731,7 @@ module.exports = grammar({
         $.color_set_definition,
         $.color_reference,
         $.tikz_library_import,
+        $.tikzstyle_definition,
         $.hyperlink,
         $.changes_replaced,
         $.todo,
@@ -1414,6 +1415,14 @@ module.exports = grammar({
       seq(
         field('command', choice('\\usepgflibrary', '\\usetikzlibrary')),
         field('paths', $.curly_group_path_list),
+      ),
+
+    tikzstyle_definition: $ =>
+      seq(
+        field('command', '\\tikzstyle'),
+        field('name', $.curly_group_text),
+        '=',
+        field('definition', $.brack_group),
       ),
 
     hyperlink: $ =>
