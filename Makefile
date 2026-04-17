@@ -82,7 +82,8 @@ $(LANGUAGE_NAME).pc: bindings/c/$(LANGUAGE_NAME).pc.in
 		-e 's|@PREFIX@|$(PREFIX)|' $< > $@
 
 $(SRC_DIR)/parser.c: grammar.js
-	$(TS) generate --no-bindings
+	# $(TS) generate --no-bindings
+	$(TS) generate
 
 install: all
 	install -d '$(DESTDIR)$(INCLUDEDIR)'/tree_sitter '$(DESTDIR)$(PCLIBDIR)' '$(DESTDIR)$(LIBDIR)'
