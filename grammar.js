@@ -404,9 +404,7 @@ module.exports = grammar({
 
     value_literal: $ => /(\d+\.)?\d+/,
 
-    hex_literal: $ => /[a-fA-F\d]{6}/,
-
-    color_spec: $ => choice($.hex_literal, sepBy1($.value_literal, ',')),
+    color_spec: $ => choice(/[a-fA-F\d]{6}/, sepBy1($.value_literal, ',')),
 
     delimiter: $ => /&/,
 
@@ -1344,15 +1342,19 @@ module.exports = grammar({
         field('spec', $.curly_group_color_spec),
       ),
 
-    color_spec_named: $ =>
-      seq(
-        field('color_name', $.word),
-        ',',
-        field('color_spec', $.color_spec)
-      ),
-
     color_spec_list: $ =>
-      seq('{', sepBy1($.color_spec_named, ';'), '}',),
+      seq(
+        '{',
+        sepBy1(
+          seq(
+            field('name', $.word),
+            ',',
+            field('spec', $.color_spec)
+          ),
+          ';'),
+        optional(';'), /* Just in case a trailing semicolon is forgotten. */
+        '}',
+      ),
 
     color_set_definition: $ =>
       seq(
@@ -1375,7 +1377,7 @@ module.exports = grammar({
             field('name', $.curly_group_text),
             seq(
               field('model', $.brack_group_text),
-              field('spec', $.curly_group),
+              field('spec', $.curly_group_color_spec),
             ),
           ),
           optional(field('text', $.curly_group)),
