@@ -656,13 +656,11 @@ tree-sitter-latex (Issue #44) | \definecolor
     (curly_group_text
       (text
         (word)))
-    (curly_group
-      (text
-        (word))
-      (text
-        (word))
-      (text
-        (word)))))
+    (curly_group_color_spec
+      (color_spec
+        (value_literal)
+        (value_literal)
+        (value_literal)))))
 
 ================================================================================
 tree-sitter-latex (Issue #48) | Brackets in math mode
