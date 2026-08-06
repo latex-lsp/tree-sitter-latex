@@ -328,6 +328,9 @@ module.exports = grammar({
     curly_group_text_list: $ =>
       seq('{', sepBy(field('text', $.text), ','), '}'),
 
+    curly_group_color_spec: $ =>
+      seq('{', $.color_spec, '}'),
+
     curly_group_label: $ => seq('{', field('label', $.label), '}'),
 
     curly_group_label_list: $ =>
@@ -400,6 +403,8 @@ module.exports = grammar({
     placeholder: $ => /#+\d/,
 
     value_literal: $ => /(\d+\.)?\d+/,
+
+    color_spec: $ => choice(/[a-fA-F\d]{6}/, sepBy1($.value_literal, ',')),
 
     delimiter: $ => /&/,
 
@@ -1334,7 +1339,21 @@ module.exports = grammar({
         optional($.brack_group_text),
         field('name', $.curly_group_text),
         field('model', $.curly_group_text),
-        field('spec', $.curly_group),
+        field('spec', $.curly_group_color_spec),
+      ),
+
+    color_spec_list: $ =>
+      seq(
+        '{',
+        sepBy1(
+          seq(
+            field('name', $.word),
+            ',',
+            field('spec', $.color_spec)
+          ),
+          ';'),
+        optional(';'), /* Just in case a trailing semicolon is forgotten. */
+        '}',
       ),
 
     color_set_definition: $ =>
@@ -1344,7 +1363,7 @@ module.exports = grammar({
         field('model', $.curly_group_text_list),
         field('head', $.curly_group),
         field('tail', $.curly_group),
-        field('spec', $.curly_group),
+        field('spec', $.color_spec_list),
       ),
 
     color_reference: $ =>
@@ -1358,7 +1377,7 @@ module.exports = grammar({
             field('name', $.curly_group_text),
             seq(
               field('model', $.brack_group_text),
-              field('spec', $.curly_group),
+              field('spec', $.curly_group_color_spec),
             ),
           ),
           optional(field('text', $.curly_group)),
