@@ -35,7 +35,7 @@ jobs:
       - name: Set up tree-sitter
         uses: tree-sitter/setup-action/cli@v2
       - name: Run parser and binding tests
-        uses: tree-sitter/parser-test-action@v2
+        uses: tree-sitter/parser-test-action@v3
         with:
           generate: true
       - name: Parse sample files
@@ -69,7 +69,7 @@ jobs:
         uses: tree-sitter/setup-action/cli@v2
         if: steps.scanner-check.outputs.changed == 'true'
       - name: Run parser and binding tests
-        uses: tree-sitter/parser-test-action@v2
+        uses: tree-sitter/parser-test-action@v3
         with:
           generate: true
         if: steps.scanner-check.outputs.changed == 'true'
