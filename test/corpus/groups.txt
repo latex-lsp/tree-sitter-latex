@@ -26,9 +26,9 @@ Unbalanced curly braces
 --------------------------------------------------------------------------------
 
 (source_file
-  (ERROR)
-  (text
-    (word))
   (ERROR
+    (letter)
+    (letter)
+    (letter)
     (text
       (word))))

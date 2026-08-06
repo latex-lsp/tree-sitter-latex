@@ -93,6 +93,7 @@ module.exports = grammar({
         $.sageblock_environment,
         $.generic_environment,
         $.math_environment,
+        $.primitive,
         $._text_content,
       ),
 
@@ -109,6 +110,49 @@ module.exports = grammar({
           ')',
         ),
       ),
+
+    primitive: $ =>
+      prec.right(
+      seq(
+        field('command', choice(
+            '\\topskip',
+            '\\leftskip',
+            '\\rightskip',
+            '\\parskip',
+            '\\parindent',
+            '\\parfillskip',
+            '\\baselineskip',
+            '\\lineskip',
+            '\\lineskiplimit',
+            '\\textheight',
+            '\\textwidth',
+            '\\paperheight',
+            '\\paperwidth',
+            '\\topmargin',
+            '\\oddsidemargin',
+            '\\headheight',
+            '\\headsep',
+            '\\marginparpush',
+            '\\marginparwidth',
+            '\\marginparsep',
+            '\\footskip',
+            '\\hoffset',
+            '\\voffset',
+        )),
+        optional(seq(optional(choice(' ', '=')), $.glue_spec)),
+      )),
+
+    glue_spec: $ =>
+      seq(
+        field('fixed', $.glue_value),
+        field('plus', optional($.plus_glue_value)),
+        field('minus', optional($.minus_glue_value)),
+      ),
+
+    // 1, 1.2, 1., .1
+    glue_value: $ => /[+-]?(\d+(\.\d*)?|\.\d+) *(bp|cm|dd|ex|em|fil|fill|in|mm|mu|pc|pt|sp)/,
+    plus_glue_value: $ => /plus *[+-]?(\d+(\.\d*)?|\.\d+) *(bp|cm|dd|ex|em|fil|fill|in|mm|mu|pc|pt|sp)/,
+    minus_glue_value: $ => /minus *[+-]?(\d+(\.\d*)?|\.\d+) *(bp|cm|dd|ex|em|fil|fill|in|mm|mu|pc|pt|sp)/,
 
     //--- Sections
 
@@ -374,6 +418,9 @@ module.exports = grammar({
     brack_group_key_value: $ =>
       seq('[', sepBy(field('pair', $.key_value_pair), ','), ']'),
 
+    paren_group: $ =>
+      seq('(', repeat(choice($.word, $.curly_group_text)), ')'),
+
     //--- Text
 
     text: $ =>
@@ -495,7 +542,12 @@ module.exports = grammar({
         seq(
           field('command', '\\begin'),
           field('name', $.curly_group_text),
-          field('options', optional($.brack_group)),
+          repeat(
+            choice(
+              field('options', $.brack_group),
+              field('arg', $.curly_group),
+            ),
+          ),
         ),
       ),
 
@@ -687,9 +739,12 @@ module.exports = grammar({
         $.color_set_definition,
         $.color_reference,
         $.tikz_library_import,
+        $.tikzstyle_definition,
         $.hyperlink,
         $.changes_replaced,
         $.todo,
+        $.cmidrule,
+        $.verb,
         $.generic_command,
       ),
 
@@ -1371,6 +1426,14 @@ module.exports = grammar({
         field('paths', $.curly_group_path_list),
       ),
 
+    tikzstyle_definition: $ =>
+      seq(
+        field('command', '\\tikzstyle'),
+        field('name', $.curly_group_text),
+        '=',
+        field('definition', $.brack_group),
+      ),
+
     hyperlink: $ =>
       prec.right(
         seq(
@@ -1386,5 +1449,22 @@ module.exports = grammar({
         field('text_added', $.curly_group),
         field('text_deleted', $.curly_group)
       ),
+
+    cmidrule: $ =>
+      seq(
+        field('command', '\\cmidrule'),
+        optional(field('options', $.brack_group)),
+        optional(field('trim', $.paren_group)),
+        field('args', $.curly_group),
+      ),
+
+    verb: $ =>
+      seq(
+        field('command', choice('\\verb', '\\verb*')),
+        token.immediate('|'),
+        field('text', token.immediate(/[^|]*/)),
+        token.immediate('|'),
+      ),
+
   },
 });
